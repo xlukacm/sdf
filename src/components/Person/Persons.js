@@ -2,6 +2,7 @@ import React from 'react';
 import Person from "./Person";
 
 const persons = (props) => props.persons.map((person, index) => {
+    console.log('person rendering');
         return (
             <Person
                 click={() => props.clicked(index)}
