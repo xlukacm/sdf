@@ -28,7 +28,7 @@ const cockpit = (props) => {
     }
 
 
-    if (props.persons.length <= 2) {
+    if (props.personsLength <= 2) {
         assignedClasses.push(classes.red); // classes = ['red']
     }
     if (props.persons.length <= 1) {
@@ -48,4 +48,5 @@ const cockpit = (props) => {
 
 
 
-export default cockpit;
+export default React.memo(cockpit); //ak sa bude menit, tak sa cyklusi nebudu otvarat, iba zo zaciatku pri otvoreni
+                                    //optimizacia functional components a neuptaduje po kazdej vnutornej zmene

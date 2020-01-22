@@ -9,6 +9,12 @@ class Persons extends Component{
 
     shouldComponentUpdate(nextProps, nextState) {
         console.log('shoulComponentUptade');
+        if(nextProps.persons !== this.props.persons){ //v skratke: ak nechceme aby toto prebehlo vzdy ale len
+            return true;                   // ked sa nieco zmeni, tak skontrolujeme ci dalsi person je zmeneni
+        }                                  //maju miesto v memories ale toto su len pointery
+        else{
+            return false;
+        }
         return true;
     }
 
