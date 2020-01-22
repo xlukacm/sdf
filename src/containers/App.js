@@ -28,6 +28,18 @@ class App extends Component {
   componentDidMount() {
     console.log('componentDidMount');
   }
+  componentWillUnmount() {
+    console.log('componentWillUnmount');
+  }
+
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    console.log('shouldComponentUpdate');
+    return true;             //false, zabranuje uptade!!
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('componentDidUpdate');
+  }
 
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
