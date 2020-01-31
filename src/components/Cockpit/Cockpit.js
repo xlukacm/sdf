@@ -1,15 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import classes from './cockpit.css'
 
 const cockpit = (props) => {
+    const toggleBtnRef = useRef(null);
+
     useEffect(() => {
         console.log('useEffect'); //zobrazuje sa po kazdom kliknuti / zmene ktora zasiahne aj cockpit
-        const timer = setTimeout(() => {
-            alert('saved data to cloud');
-        }, 1000); // toto vyuzijeme na to aby nam vyskakovalo okno pri nacitani stranky po sec
+       // const timer = setTimeout(() => {
+       //     alert('saved data to cloud');
+       // }, 1000); // toto vyuzijeme na to aby nam vyskakovalo okno pri nacitani stranky po sec
+       toggleBtnRef.current.click(); //aby vzdy pri zapnuti sa otvoril button
         return () => { //clean up
-            clearTimeout(timer); //aby nevyhazdovalo po kazdom zmazani niecoho, aby to unmoutlo pri cleane
+           // clearTimeout(timer); //aby nevyhazdovalo po kazdom zmazani niecoho, aby to unmoutlo pri cleane
             console.log('[Cockpit] cleanup work in useEffect'); //toto sa nezobrazi pokioal neda zmazat cockpit
         }
     },[]);
@@ -39,7 +42,7 @@ const cockpit = (props) => {
         <div className={classes.Cockpit}>
             <h1>{props.title}</h1>
             <p className={assignedClasses.join(' ')}>This is really working!</p>
-            <button className={btnClass} onClick={props.clicked}>
+            <button ref={toggleBtnRef} className={btnClass} onClick={props.clicked}>
                 Toggle Persons
             </button>
         </div>
