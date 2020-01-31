@@ -1,4 +1,6 @@
 import React,{Component} from 'react';
+import PropTypes from 'prop-types';  //stiahnuti novy balik
+
 import Aux from '../../High Order Comp/Auxillia'
 import withCLass from '../../High Order Comp/withClass';
 import classes from './Person.css';
@@ -20,11 +22,15 @@ class Person  extends Component{
                         value={this.props.name} />
              </Aux>
         );
-
            // ];
     }
-
-
 }
+//toto je na to ak clovek da zly prop, tak to hodi sem
+Person.propTypes = {
+    click: PropTypes.func,
+    name: PropTypes.string,
+    age: PropTypes.number,
+    changed: PropTypes.func
+};
 
 export default withCLass(Person, classes.Person);
