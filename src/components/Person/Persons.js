@@ -1,7 +1,9 @@
-import React, { Component} from 'react';
+import React, { PureComponent} from 'react';
 import Person from "./Person";
 
-class Persons extends Component{
+class Persons extends PureComponent{ //Pure Component je na to aby sme nemuseli definovat shouldComponentUpdate
+                                    // taktiez automaticky implementuje vsetky checky ake su c shoulde (vid nizsie)
+
     // static getDerivedStateFromProps(props,state){
     //     console.log('getDerivedStateFromProps')
     //     return state;
@@ -9,9 +11,12 @@ class Persons extends Component{
 
     shouldComponentUpdate(nextProps, nextState) {
         console.log('shoulComponentUptade');
-        if(nextProps.persons !== this.props.persons){ //v skratke: ak nechceme aby toto prebehlo vzdy ale len
-            return true;                   // ked sa nieco zmeni, tak skontrolujeme ci dalsi person je zmeneni
-        }                                  //maju miesto v memories ale toto su len pointery
+        if(nextProps.persons !== this.props.persons ||   //v skratke: ak nechceme aby toto prebehlo vzdy ale len
+            nextProps.changed !== this.props.changed ||  // ked sa nieco zmeni, tak skontrolujeme ci dalsi person je zmeneni
+            nextProps.clicked !== this.props.clicked     //maju miesto v memories ale toto su len pointery
+        ){
+            return true;
+        }
         else{
             return false;
         }
